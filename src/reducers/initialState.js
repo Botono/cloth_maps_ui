@@ -1,3 +1,15 @@
 export default {
-  selectedPage: 1
+  mapsList: {
+    showAddMap: false,
+    maps: [],
+    selectedMap: '',
+  },
+  framesList: {
+    showAddFrame: false,
+    frames: [],
+    selectedFrame: ''
+  },
+  global: {
+    selectedPage: 1
+  } 
 };

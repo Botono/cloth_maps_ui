@@ -1,16 +1,11 @@
 // Set up your root reducer here...
 import { combineReducers } from 'redux';
-import initialState from './initialState';
-
-const defaultReducer = (state = initialState, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+import mapsList from './mapsListReducer';
+import framesList from './framesListReducer';
 
 const rootReducer = combineReducers({
- defaultReducer
+ mapsList,
+ framesList
 });
 
 export default rootReducer;
