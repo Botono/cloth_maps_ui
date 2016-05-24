@@ -6,7 +6,8 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Clearfix from 'react-bootstrap/lib/Clearfix';
 import ModalWindow from './ModalWindow';
-import NewMapForm from './NewMapForm';
+import MapForm from './MapForm';
+import {EMPTY_MAP_FORM} from '../constants/constants';
 
 class Maps extends React.Component {
 
@@ -27,6 +28,7 @@ class Maps extends React.Component {
 
   render() {
     const {mapsList} = this.props;
+    let mapProps = EMPTY_MAP_FORM;
 
     return (
       <div>
@@ -38,7 +40,7 @@ class Maps extends React.Component {
           <Row className="show-grid">
             <Col sm={6} md={3}>MAP</Col>
             <Col sm={6} md={3}>MAP</Col>
-            <Clearfix visibleSmBlock></Clearfix>
+            <Clearfix visibleSmBlock />
             <Col sm={6} md={3}>MAP</Col>
             <Col sm={6} md={3}>MAP</Col>
           </Row>
@@ -49,7 +51,7 @@ class Maps extends React.Component {
           close={this.close}
           submit_label="Add Map"
           title="Add Map">
-          <NewMapForm />
+          <MapForm {...mapProps} />
         </ModalWindow>
       </div>
     );

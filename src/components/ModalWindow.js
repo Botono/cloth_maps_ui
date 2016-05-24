@@ -28,7 +28,7 @@ ModalWindow.propTypes = {
   showModalWindow: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired,
   submit_label: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default ModalWindow;

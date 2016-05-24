@@ -2,7 +2,7 @@ export default {
   mapsList: {
     showAddMap: false,
     maps: [],
-    selectedMap: '',
+    selectedMap: ''
   },
   framesList: {
     showAddFrame: false,
@@ -11,5 +11,5 @@ export default {
   },
   global: {
     selectedPage: 1
-  } 
+  }
 };

@@ -66,6 +66,11 @@
     "react/sort-comp": 1,
     "react/wrap-multilines": 1
   },
+  "settings": {
+    "import/resolver": {
+      "webpack": { "config": "webpack.config.dev.js" }
+    }
+  },
   "globals": {
   }
 }
