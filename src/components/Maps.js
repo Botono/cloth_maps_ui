@@ -34,23 +34,39 @@ class Maps extends React.Component {
   render() {
     const {mapsList} = this.props;
     let mapFormProps = EMPTY_MAP_FORM;
+    let mapGridItems =
+      mapsList.maps.map((map, i) => {
+        let return_array = [];
+
+        return_array.push(<MapGridItem {...map} />);
+
+        /*if ((i+1)%4===0) {
+          // Insert Large Clearfix after every 4th MapGridItem
+          return_array.push(<Clearfix visibleLgBlock /> );
+        } else */if ((i+1)%3===0) {
+          // Insert Medium Clearfix after every third MapGridItem
+          return_array.push(<Clearfix visibleMdBlock /> );
+        } else if ((i+1)%2===0) {
+          // Insert Sm Clearfix after every other MapGridItem
+          return_array.push(<Clearfix visibleSmBlock /> );
+        }
+        return (return_array);
+    });
 
     return (
       <div>
         <Row>
           <Col md={3} mdOffset={9}>
-            <ButtonGroup pullRight={true}>
+            <ButtonGroup>
+
               <Button bsStyle="primary" onClick={this.open}>{'Add Map'}</Button>
+
             </ButtonGroup>
           </Col>
         </Row>
         <Grid fluid={true}>
           <Row className="show-grid">
-            {mapsList.maps.map((map) => {
-              return (
-                <MapGridItem {...map} />
-              );
-            })}
+            {mapGridItems}
           </Row>
         </Grid>
 
