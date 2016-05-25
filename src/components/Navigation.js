@@ -1,4 +1,7 @@
 import React from "react";
+
+import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
@@ -8,7 +11,7 @@ import {LinkContainer, IndexLinkContainer} from 'react-router-bootstrap';
 class Navigation extends React.Component {
   render() {
     return (
-      <Navbar>
+      <Navbar staticTop={true} fluid={true}>
         <Navbar.Header>
           <Navbar.Brand>
             <a href="#">Cloth Maps</a>
@@ -24,7 +27,11 @@ class Navigation extends React.Component {
               <NavItem eventKey={2}>Frames</NavItem>
             </LinkContainer>
           </Nav>
+          <Navbar.Form pullRight>
+              <Button bsStyle="primary">{'Add Map'}</Button>
+          </Navbar.Form>
         </Navbar.Collapse>
+
       </Navbar>
     );
   }

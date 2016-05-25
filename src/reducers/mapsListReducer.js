@@ -1,4 +1,5 @@
-import {START_ADD_MAP, END_ADD_MAP} from '../constants/actionTypes';
+import {START_ADD_MAP, END_ADD_MAP, LOAD_MAP_LIST} from '../constants/actionTypes';
+import {TEMP_MAP_DATA} from '../constants/constants';
 import objectAssign from 'object-assign';
 import initialState from './initialState';
 
@@ -14,6 +15,8 @@ export default function mapsListReducer(state = initialState.mapsList, action) {
       return objectAssign({}, state, {showAddMap: true});
     case END_ADD_MAP:
       return objectAssign({}, state, {showAddMap: false});
+    case LOAD_MAP_LIST:
+      return objectAssign({}, state, {maps: TEMP_MAP_DATA});
     default:
       return state;
   }

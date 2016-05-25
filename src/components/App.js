@@ -1,12 +1,15 @@
 import React from "react";
 import Navigation from "./Navigation";
+import Row from 'react-bootstrap/lib/Row';
 
 class App extends React.Component {
   render() {
     return (
-      <div className="container-fluid">
-        <Navigation />
-        {this.props.children}
+      <div>
+        <Row>
+          <Navigation />
+          {this.props.children}
+        </Row>
       </div>
     );
   }

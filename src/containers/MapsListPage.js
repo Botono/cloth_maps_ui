@@ -9,6 +9,7 @@ export const MapsListPage = (props) => {
     <Maps
       openAddMap={props.actions.openAddMap}
       closeAddMap={props.actions.closeAddMap}
+      loadMapList={props.actions.loadMapList}
       mapsList={props.mapsList}
     />
   );

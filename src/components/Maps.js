@@ -1,12 +1,16 @@
 import React from "react";
+
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Clearfix from 'react-bootstrap/lib/Clearfix';
+
 import ModalWindow from './ModalWindow';
 import MapForm from './MapForm';
+import MapGridItem from './MapGridItem';
 import {EMPTY_MAP_FORM} from '../constants/constants';
 
 class Maps extends React.Component {
@@ -16,6 +20,7 @@ class Maps extends React.Component {
 
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
+    this.props.loadMapList();
   }
 
   open() {
@@ -28,21 +33,24 @@ class Maps extends React.Component {
 
   render() {
     const {mapsList} = this.props;
-    let mapProps = EMPTY_MAP_FORM;
+    let mapFormProps = EMPTY_MAP_FORM;
 
     return (
       <div>
-        <ButtonToolbar>
-          <Button bsStyle="primary" onClick={this.open}>{'Add Map'}</Button>
-        </ButtonToolbar>
-
-        <Grid>
+        <Row>
+          <Col md={3} mdOffset={9}>
+            <ButtonGroup pullRight={true}>
+              <Button bsStyle="primary" onClick={this.open}>{'Add Map'}</Button>
+            </ButtonGroup>
+          </Col>
+        </Row>
+        <Grid fluid={true}>
           <Row className="show-grid">
-            <Col sm={6} md={3}>MAP</Col>
-            <Col sm={6} md={3}>MAP</Col>
-            <Clearfix visibleSmBlock />
-            <Col sm={6} md={3}>MAP</Col>
-            <Col sm={6} md={3}>MAP</Col>
+            {mapsList.maps.map((map) => {
+              return (
+                <MapGridItem {...map} />
+              );
+            })}
           </Row>
         </Grid>
 
@@ -51,7 +59,7 @@ class Maps extends React.Component {
           close={this.close}
           submit_label="Add Map"
           title="Add Map">
-          <MapForm {...mapProps} />
+          <MapForm {...mapFormProps} />
         </ModalWindow>
       </div>
     );

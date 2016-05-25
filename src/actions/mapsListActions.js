@@ -7,3 +7,7 @@ export function openAddMap(settings) {
 export function closeAddMap(settings) {
   return {type: types.END_ADD_MAP, settings};
 }
+
+export function loadMapList(settings) {
+  return {type: types.LOAD_MAP_LIST, settings};
+}
