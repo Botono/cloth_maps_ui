@@ -23,7 +23,7 @@ const MapGridItem = (props) => {
     <Col sm={6} md={4} lg={4}>
       <Panel header={panel_title}>
         <Col lg={10} md={10} sm={10} xs={10}>
-          <Image src={map_image} responsive />
+          <Image src={map_image} height={400} width={400} />
         </Col>
         <Col lg={2} md={2} sm={2} xs={2}>
           <ButtonGroup vertical>

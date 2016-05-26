@@ -56,20 +56,18 @@ class Maps extends React.Component {
     return (
       <div>
         <Row>
-          <Col md={3} mdOffset={9}>
-            <ButtonGroup>
-
+          <Col md={12} xs={12}>
+            <ButtonToolbar>
               <Button bsStyle="primary" onClick={this.open}>{'Add Map'}</Button>
-
-            </ButtonGroup>
+            </ButtonToolbar>
           </Col>
         </Row>
+
         <Grid fluid={true}>
           <Row className="show-grid">
             {mapGridItems}
           </Row>
         </Grid>
-
         <ModalWindow
           showModalWindow={mapsList.showAddMap}
           close={this.close}

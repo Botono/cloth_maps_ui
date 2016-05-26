@@ -27,9 +27,6 @@ class Navigation extends React.Component {
               <NavItem eventKey={2}>Frames</NavItem>
             </LinkContainer>
           </Nav>
-          <Navbar.Form pullRight>
-              <Button bsStyle="primary">{'Add Map'}</Button>
-          </Navbar.Form>
         </Navbar.Collapse>
 
       </Navbar>
