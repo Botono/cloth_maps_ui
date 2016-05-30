@@ -8,10 +8,9 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Clearfix from 'react-bootstrap/lib/Clearfix';
 
-import ModalWindow from './ModalWindow';
-import MapForm from './MapForm';
+import AlertError from './AlertError';
 import MapGridItem from './MapGridItem';
-import {EMPTY_MAP_FORM} from '../constants/constants';
+
 
 class Maps extends React.Component {
 
@@ -32,13 +31,17 @@ class Maps extends React.Component {
   }
 
   render() {
-    const {mapsListState} = this.props;
-    let mapFormProps = EMPTY_MAP_FORM;
     let mapGridItems =
-      mapsListState.maps.map((map, i) => {
+      this.props.maps.map((map, i) => {
         let return_array = [];
 
-        return_array.push(<MapGridItem {...map} />);
+        return_array.push(
+          <MapGridItem
+            {...map}
+            openMapOptions={this.props.openMapOptions}
+            closeMapOptions={this.props.closeMapOptions}
+            mapOptionsOpened={this.props.mapOptionsOpened}
+          />);
 
         /*if ((i+1)%4===0) {
           // Insert Large Clearfix after every 4th MapGridItem
@@ -57,16 +60,10 @@ class Maps extends React.Component {
       <div>
         <Grid fluid={true}>
           <Row className="show-grid">
+            <AlertError message={this.props.mapsErrorMessage} />
             {mapGridItems}
           </Row>
         </Grid>
-        <ModalWindow
-          showModalWindow={mapsListState.showAddMap}
-          close={this.close}
-          submit_label="Add Map"
-          title="Add Map">
-          <MapForm {...mapFormProps} />
-        </ModalWindow>
       </div>
     );
 

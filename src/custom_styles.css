@@ -1,0 +1,30 @@
+.modal {
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+div.modal-gridItem-options .modal-body {
+  padding: 0;
+}
+
+div.modal-gridItem-options .list-group {
+  margin-bottom: 0;
+}
+
+.grid-item-spacer {
+  margin-bottom: 50px;
+}

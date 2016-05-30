@@ -14,7 +14,7 @@ function receiveLogin(json) {
   };
 }
 
-function loginError(message) {
+export function loginError(message) {
   return {
     type: types.LOGIN_FAILURE,
     message
@@ -34,19 +34,22 @@ export function loginUser(creds) {
     dispatch(requestLogin(creds));
 
     return fetch('api/login', config)
-    .then(response => {
-      if (response.status === 401) {
-        dispatch(loginError('Login failed.'));
-      } else if (response.status === 200) {
-        let the_json = response.json();
-        localStorage.setItem('id_token', the_json.id_token);
-        // Dispatch the success action
-        dispatch(receiveLogin(the_json));
-      }
-      }
-    ).catch(err => {
-      // Error condition
-      dispatch(loginError('Login failed: '+ err.message));
-    });
+    .then(response =>
+        response.json().then(the_json => ({ the_json, response }))
+            ).then(({ the_json, response }) =>  {
+        if (!response.ok) {
+          // If there was a problem, we want to
+          // dispatch the error condition
+          dispatch(loginError('Login failed.'));
+          return Promise.reject(the_json);
+        } else {
+          // If login was successful, set the token in local storage
+          localStorage.setItem('id_token', the_json.id_token);
+          // Dispatch the success action
+          dispatch(receiveLogin(the_json));
+        }
+      }).catch(
+        dispatch(loginError('Login failed.'))
+      );
   };
 }

@@ -34,10 +34,7 @@ class Navigation extends React.Component {
 
       </Navbar>
 
-      <ModalWindow
-        showModalWindow={!this.props.authProps.isAuthenticated}
-        submit_label="Login"
-        title="Login">
+      <ModalWindow showModalWindow={!this.props.authProps.isAuthenticated}>
         <LoginForm authProps={this.props.authProps} loginUserAction={this.props.loginUserAction} />
       </ModalWindow>
 

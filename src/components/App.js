@@ -4,11 +4,18 @@ import Row from 'react-bootstrap/lib/Row';
 
 class App extends React.Component {
   render() {
+
+    // Pass authProps to all child elementss
+    const childrenWithProps = React.Children.map(this.props.children,
+     (child) => React.cloneElement(child, {
+       authProps: this.props.authProps
+     })
+    );
     return (
       <div>
         <Row>
           <Navigation authProps={this.props.authProps} loginUserAction={this.props.loginUserAction}/>
-          {this.props.children}
+          {childrenWithProps}
         </Row>
       </div>
     );
