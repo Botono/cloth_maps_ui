@@ -7,7 +7,7 @@ class App extends React.Component {
     return (
       <div>
         <Row>
-          <Navigation />
+          <Navigation isAuthenticated={this.props.isAuthenticated} />
           {this.props.children}
         </Row>
       </div>

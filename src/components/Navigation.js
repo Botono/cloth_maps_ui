@@ -5,12 +5,15 @@ import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
+import ModalWindow from './ModalWindow';
+import LoginForm from './LoginForm';
 import {LinkContainer, IndexLinkContainer} from 'react-router-bootstrap';
 
 
 class Navigation extends React.Component {
   render() {
     return (
+      <div>
       <Navbar staticTop={true} fluid={true}>
         <Navbar.Header>
           <Navbar.Brand>
@@ -30,6 +33,15 @@ class Navigation extends React.Component {
         </Navbar.Collapse>
 
       </Navbar>
+
+      <ModalWindow
+        showModalWindow={!this.props.isAuthenticated}
+        submit_label="Login"
+        title="Login">
+        <LoginForm isFetching={this.props.isFetching} />
+      </ModalWindow>
+
+      </div>
     );
   }
 }

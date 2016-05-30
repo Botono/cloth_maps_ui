@@ -10,19 +10,19 @@ export const MapsListPage = (props) => {
       openAddMap={props.actions.openAddMap}
       closeAddMap={props.actions.closeAddMap}
       loadMapList={props.actions.loadMapList}
-      mapsList={props.mapsList}
+      mapsListState={props.mapsListState}
     />
   );
 };
 
 MapsListPage.propTypes = {
   actions: PropTypes.object.isRequired,
-  mapsList: PropTypes.object.isRequired
+  mapsListState: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    mapsList: state.mapsList
+    mapsListState: state.mapsList
   };
 }
 

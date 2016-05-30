@@ -32,10 +32,10 @@ class Maps extends React.Component {
   }
 
   render() {
-    const {mapsList} = this.props;
+    const {mapsListState} = this.props;
     let mapFormProps = EMPTY_MAP_FORM;
     let mapGridItems =
-      mapsList.maps.map((map, i) => {
+      mapsListState.maps.map((map, i) => {
         let return_array = [];
 
         return_array.push(<MapGridItem {...map} />);
@@ -55,21 +55,13 @@ class Maps extends React.Component {
 
     return (
       <div>
-        <Row>
-          <Col md={12} xs={12}>
-            <ButtonToolbar>
-              <Button bsStyle="primary" onClick={this.open}>{'Add Map'}</Button>
-            </ButtonToolbar>
-          </Col>
-        </Row>
-
         <Grid fluid={true}>
           <Row className="show-grid">
             {mapGridItems}
           </Row>
         </Grid>
         <ModalWindow
-          showModalWindow={mapsList.showAddMap}
+          showModalWindow={mapsListState.showAddMap}
           close={this.close}
           submit_label="Add Map"
           title="Add Map">

@@ -1,15 +1,13 @@
 export default {
-  mapsList: {
-    showAddMap: false,
-    maps: [],
-    selectedMap: ''
-  },
-  framesList: {
-    showAddFrame: false,
-    frames: [],
-    selectedFrame: ''
-  },
-  global: {
-    selectedPage: 1
-  }
+  isAuthenticated: localStorage.getItem('id_token') ? true : false,
+  isFetching: false,
+  errorMessage: '',
+  user: {},
+  showAddMap: false,
+  maps: [],
+  selectedMap: '',
+  showAddFrame: false,
+  frames: [],
+  selectedFrame: '',
+  selectedPage: 1
 };
