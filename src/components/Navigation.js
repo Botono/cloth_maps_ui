@@ -35,10 +35,10 @@ class Navigation extends React.Component {
       </Navbar>
 
       <ModalWindow
-        showModalWindow={!this.props.isAuthenticated}
+        showModalWindow={!this.props.authProps.isAuthenticated}
         submit_label="Login"
         title="Login">
-        <LoginForm isFetching={this.props.isFetching} />
+        <LoginForm authProps={this.props.authProps} loginUserAction={this.props.loginUserAction} />
       </ModalWindow>
 
       </div>

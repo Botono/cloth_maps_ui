@@ -3,16 +3,17 @@
 // With Redux, the actual stores are in /reducers.
 
 import { createStore, compose, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import ReduxThunk from 'redux-thunk';
 import rootReducer from '../reducers';
 
 export default function configureStore(initialState) {
   const store = createStore(
     rootReducer,
+    applyMiddleware(ReduxThunk),
     initialState,
+
     compose(
       // Add other middleware on this line...
-      applyMiddleware(thunk),
       window.devToolsExtension ? window.devToolsExtension() : f => f // add support for Redux dev tools
     )
   );

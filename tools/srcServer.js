@@ -14,7 +14,7 @@ import proxy from 'proxy-middleware';
 import config from '../webpack.config.dev';
 
 const bundler = webpack(config);
-const proxyOptions = url.parse('http://localhost:4000');
+const proxyOptions = url.parse('https://botono.com/cloth_maps/api');
 proxyOptions.route = '/api';
 
 

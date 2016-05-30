@@ -1,7 +1,7 @@
 export default {
   isAuthenticated: localStorage.getItem('id_token') ? true : false,
   isFetching: false,
-  errorMessage: '',
+  loginErrorMessage: "",
   user: {},
   showAddMap: false,
   maps: [],

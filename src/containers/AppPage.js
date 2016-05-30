@@ -7,29 +7,30 @@ import App from '../components/App';
 export const AppPage = (props) => {
   return (
     <App
-      isAuthenticated={props.isAuthenticated}
-      errorMessage={props.errorMessage}
-      isFetching={props.isFetching}
+      authProps={props.authProps}
+      loginUserAction={props.actions.loginUser}
+      children={props.children}
     />
   );
 };
 
 AppPage.propTypes = {
   actions: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string,
-  isFetching: PropTypes.bool
+  authProps: PropTypes.object.isRequired,
+  children: PropTypes.element.isRequired
 };
 
 function mapStateToProps(state) {
 
   const { auth } = state;
-  const { isAuthenticated, errorMessage, isFetching } = auth;
+  const { isAuthenticated, loginErrorMessage, isFetching } = auth;
 
   return {
-    isAuthenticated,
-    errorMessage,
-    isFetching
+    authProps: {
+      isAuthenticated,
+      loginErrorMessage,
+      isFetching
+    }
   };
 
 }
