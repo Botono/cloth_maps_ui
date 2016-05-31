@@ -30,6 +30,7 @@ function mapListError(message) {
 }
 
 export function loadMapList() {
+  console.log('loadMapList');
   return function (dispatch) {
 
     let token = localStorage.getItem('id_token') || null;

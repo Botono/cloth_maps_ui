@@ -17,11 +17,6 @@ import GridItemOptions from './GridItemOptions';
 
 const MapGridItem = (props) => {
 
-  const panel_title = (
-    <h4>
-      {props.name}
-    </h4>);
-
   const mapId = props.id;
   const openMapOptions = props.openMapOptions;
   const closeMapOptions = props.closeMapOptions;
@@ -43,21 +38,27 @@ const MapGridItem = (props) => {
     {optionText: 'Frame this map', optionAction: frameAction }
   ];
 
+  const buttonsFoo = (<ButtonGroup>
+    <Button onClick={openClickHandler} bsStyle="link" bsSize="large">
+      <Glyphicon glyph="option-vertical" />
+    </Button>
+  </ButtonGroup>);
+
   const map_image = IMG_PATH_MAPS.concat(props.image ? props.image : 'default.svg');
 
   return(
     <Col sm={6} md={4} lg={4} xs={12}>
         <Grid fluid={true}>
         <Row>
-          <Col xs={11}>
-            <h3>{panel_title}</h3>
-          </Col>
-          <Col xsPull xs={1} >
-            <ButtonGroup pullLeft>
-              <Button onClick={openClickHandler} bsStyle="link" bsSize="large">
-                <Glyphicon glyph="option-vertical" />
-              </Button>
-            </ButtonGroup>
+          <Col xs={12}>
+            <h3>
+              {props.name}
+              <ButtonGroup pullRight>
+                <Button onClick={openClickHandler} bsStyle="link" bsSize="large">
+                  <Glyphicon glyph="option-vertical" />
+                </Button>
+              </ButtonGroup>
+            </h3>
           </Col>
         </Row>
         <Row>

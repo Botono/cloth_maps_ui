@@ -30,12 +30,10 @@ MapsListPage.propTypes = {
 
 function mapStateToProps(state) {
 
-  const mapState = state.maps;
-  const { mapsFetching, mapsErrorMessage, maps } = mapState;
   const {mapOptionsOpened} = state.mapOptions
 
   return {
-    mapsFetching, mapsErrorMessage, maps, mapOptionsOpened
+    mapOptionsOpened
   };
 }
 

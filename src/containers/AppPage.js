@@ -9,6 +9,9 @@ export const AppPage = (props) => {
     <App
       authProps={props.authProps}
       loginUserAction={props.actions.loginUser}
+      mapsFetching={props.mapsFetching}
+      mapsErrorMessage={props.mapsErrorMessage}
+      maps={props.maps}
       children={props.children}
     />
   );
@@ -17,20 +20,28 @@ export const AppPage = (props) => {
 AppPage.propTypes = {
   actions: PropTypes.object.isRequired,
   authProps: PropTypes.object.isRequired,
+  mapsFetching: PropTypes.bool.isRequired,
+  mapsErrorMessage: PropTypes.string.isRequired,
+  maps: PropTypes.array.isRequired,
   children: PropTypes.element.isRequired
 };
 
 function mapStateToProps(state) {
 
   const { auth } = state;
+  const mapState = state.maps;
   const { isAuthenticated, loginErrorMessage, isFetching } = auth;
+  const { mapsFetching, mapsErrorMessage, maps } = mapState;
 
   return {
     authProps: {
       isAuthenticated,
       loginErrorMessage,
       isFetching
-    }
+    },
+    mapsFetching,
+    mapsErrorMessage,
+    maps
   };
 
 }
