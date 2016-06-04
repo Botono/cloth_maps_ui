@@ -14,10 +14,11 @@ import Panel from 'react-bootstrap/lib/Panel';
 import Row from 'react-bootstrap/lib/Row';
 
 import GridItemOptions from './GridItemOptions';
+import MapImage from './MapImage';
 
 const MapGridItem = (props) => {
 
-  const mapId = props.id;
+  const mapId = props.mapOptions.id;
   const openMapOptions = props.openMapOptions;
   const closeMapOptions = props.closeMapOptions;
 
@@ -44,7 +45,7 @@ const MapGridItem = (props) => {
     </Button>
   </ButtonGroup>);
 
-  const map_image = IMG_PATH_MAPS.concat(props.image ? props.image : 'default.svg');
+
 
   return(
     <Col sm={6} md={4} lg={4} xs={12}>
@@ -52,7 +53,7 @@ const MapGridItem = (props) => {
         <Row>
           <Col xs={12}>
             <h3>
-              {props.name}
+              {props.mapOptions.name}
               <ButtonGroup pullRight>
                 <Button onClick={openClickHandler} bsStyle="link" bsSize="large">
                   <Glyphicon glyph="option-vertical" />
@@ -64,7 +65,7 @@ const MapGridItem = (props) => {
         <Row>
           <Col>
             <div className="grid-item-spacer">
-              <Image src={map_image} responsive bsClass="grid-item" />
+              <MapImage mapOptions={props.mapOptions} frameOptions={props.frameOptions} />
             </div>
           </Col>
         </Row>

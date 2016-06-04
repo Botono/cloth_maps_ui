@@ -13,6 +13,7 @@ export const MapsListPage = (props) => {
       mapsFetching={props.mapsFetching}
       mapsErrorMessage={props.mapsErrorMessage}
       maps={props.maps}
+      frames={props.frames}
       mapOptionsOpened={props.mapOptionsOpened}
       authProps={props.authProps}
     />
@@ -24,6 +25,7 @@ MapsListPage.propTypes = {
   mapsFetching: PropTypes.bool.isRequired,
   mapsErrorMessage: PropTypes.string.isRequired,
   maps: PropTypes.array.isRequired,
+  frames: PropTypes.array.isRequired,
   mapOptionsOpened: PropTypes.number.isRequired,
   authProps: PropTypes.object.isRequired
 };

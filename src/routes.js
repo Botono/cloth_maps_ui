@@ -9,6 +9,5 @@ export default (
   <Route path="/" component={AppPage}>
     <IndexRoute component={MapsListPage}/>
     <Route path="Maps" component={MapsListPage}/>
-    <Route path="Frames" component={FramesListPage}/>
   </Route>
 );

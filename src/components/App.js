@@ -11,7 +11,8 @@ class App extends React.Component {
        authProps: this.props.authProps,
        mapsFetching: this.props.mapsFetching,
        mapsErrorMessage: this.props.mapsErrorMessage,
-       maps: this.props.maps
+       maps: this.props.maps,
+       frames: this.props.frames
      })
     );
 

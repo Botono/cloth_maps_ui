@@ -19,6 +19,7 @@ class Maps extends React.Component {
 
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
+    this.getMapFrame = this.getMapFrame.bind(this);
     this.props.loadMapList();
   }
 
@@ -30,14 +31,26 @@ class Maps extends React.Component {
     this.props.closeAddMap();
   }
 
+  getMapFrame(id) {
+    let frame_id = id || 0;
+    for (let i=0;this.props.frames[i];i++) {
+      if (this.props.frames[i].id === frame_id) {
+        return this.props.frames[i];
+      }
+    }
+    return {}
+  }
+
   render() {
     let mapGridItems =
       this.props.maps.map((map, i) => {
         let return_array = [];
+        let mapFrame = this.getMapFrame(map.frame_id);
 
         return_array.push(
           <MapGridItem
-            {...map}
+            mapOptions={map}
+            frameOptions={mapFrame}
             openMapOptions={this.props.openMapOptions}
             closeMapOptions={this.props.closeMapOptions}
             mapOptionsOpened={this.props.mapOptionsOpened}

@@ -8,6 +8,7 @@ export default {
   // Map List
   showAddMap: false,
   maps: [],
+  frames: [],
   selectedMap: '',
   mapsFetching: false,
   mapsErrorMessage: '',
@@ -15,7 +16,6 @@ export default {
 
   // Frame List
   showAddFrame: false,
-  frames: [],
   selectedFrame: '',
 
   // Navigation - unused currently

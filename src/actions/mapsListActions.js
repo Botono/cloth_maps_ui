@@ -18,11 +18,13 @@ export function closeMapOptions() {
 }
 
 function requestMapList() {
+  console.log('requestMapList');
   return {type: types.MAP_LIST_REQUEST};
 }
 
 function receiveMapList(json) {
-  return {type: types.MAP_LIST_RECEIVE, mapList: json.maps};
+  console.log('receiveMapList');
+  return {type: types.MAP_LIST_RECEIVE, mapList: json["maps"], frameList: json["frames"]};
 }
 
 function mapListError(message) {

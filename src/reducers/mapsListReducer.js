@@ -14,19 +14,22 @@ export function maps(state = initialState, action) {
       return Object.assign({}, state, {
         mapsFetching: true,
         mapsErrorMessage: '',
-        maps: []
+        maps: [],
+        frames: []
       });
     case MAP_LIST_ERROR:
       return Object.assign({}, state, {
         mapsFetching: false,
         mapsErrorMessage: action.message,
-        maps: []
+        maps: [],
+        frames: []
       });
     case MAP_LIST_RECEIVE:
       return Object.assign({}, state, {
         mapsFetching: false,
         mapsErrorMessage: '',
-        maps: action.mapList
+        maps: action["mapList"],
+        frames: action["frameList"]
       });
     default:
       return state;
