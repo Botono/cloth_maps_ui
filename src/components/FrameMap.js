@@ -12,22 +12,14 @@ import AlertError from './AlertError';
 import MapGridItem from './MapGridItem';
 
 
-class Maps extends React.Component {
+class FrameMap extends React.Component {
 
   constructor(props, context) {
     super(props, context);
 
-    this.open = this.open.bind(this);
-    this.close = this.close.bind(this);
+
     this.getMapFrame = this.getMapFrame.bind(this);
-  }
 
-  open() {
-    this.props.openAddMap();
-  }
-
-  close() {
-    this.props.closeAddMap();
   }
 
   getMapFrame(id) {
@@ -53,17 +45,18 @@ class Maps extends React.Component {
             openMapOptions={this.props.openMapOptions}
             closeMapOptions={this.props.closeMapOptions}
             mapOptionsOpened={this.props.mapOptionsOpened}
-            frameAMap={this.props.frameAMap}
           />);
 
-        if ((i+1)%3===0) {
+        /*if ((i+1)%4===0) {
+          // Insert Large Clearfix after every 4th MapGridItem
+          return_array.push(<Clearfix visibleLgBlock /> );
+        } else */if ((i+1)%3===0) {
           // Insert Medium Clearfix after every third MapGridItem
-          return_array.push(<Clearfix visibleMdBlock visibleLgBlock /> );
+          return_array.push(<Clearfix visibleMdBlock /> );
         } else if ((i+1)%2===0) {
           // Insert Sm Clearfix after every other MapGridItem
           return_array.push(<Clearfix visibleSmBlock /> );
         }
-
         return (return_array);
     });
 
@@ -81,4 +74,4 @@ class Maps extends React.Component {
   }
 }
 
-export default Maps;
+export default FrameMap;

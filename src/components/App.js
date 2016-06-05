@@ -3,6 +3,12 @@ import Navigation from "./Navigation";
 import Row from 'react-bootstrap/lib/Row';
 
 class App extends React.Component {
+
+  constructor(props, context) {
+    super(props, context);
+    this.props.loadMapList();
+  }
+
   render() {
 
     // Pass authProps to all child elementss

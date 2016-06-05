@@ -17,3 +17,5 @@ export const MAP_LIST_ERROR = 'MAP_LIST_ERROR';
 
 export const MAP_OPTIONS_OPEN = 'MAP_OPTIONS_OPEN';
 export const MAP_OPTIONS_CLOSED = 'MAP_OPTIONS_CLOSED';
+
+export const FRAME_MAP = 'FRAME_MAP';

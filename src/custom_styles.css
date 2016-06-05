@@ -28,3 +28,7 @@ div.modal-gridItem-options .list-group {
 .grid-item-spacer {
   margin-bottom: 50px;
 }
+
+.map-image {
+  margin: 0 auto;
+}

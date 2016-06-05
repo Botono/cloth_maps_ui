@@ -1,5 +1,6 @@
 import * as types from '../constants/actionTypes';
 import {loginError} from '../actions/authActions';
+import { browserHistory } from 'react-router';
 
 export function openAddMap(settings) {
   return {type: types.START_ADD_MAP, settings};
@@ -17,13 +18,17 @@ export function closeMapOptions() {
   return {type: types.MAP_OPTIONS_CLOSED};
 }
 
+export function frameAMap(mapId) {
+  const path = `FrameMap/${mapId}`;
+  browserHistory.push(path);
+  return {type: types.FRAME_MAP, mapId};
+}
+
 function requestMapList() {
-  console.log('requestMapList');
   return {type: types.MAP_LIST_REQUEST};
 }
 
 function receiveMapList(json) {
-  console.log('receiveMapList');
   return {type: types.MAP_LIST_RECEIVE, mapList: json["maps"], frameList: json["frames"]};
 }
 
@@ -32,7 +37,6 @@ function mapListError(message) {
 }
 
 export function loadMapList() {
-  console.log('loadMapList');
   return function (dispatch) {
 
     let token = localStorage.getItem('id_token') || null;
@@ -50,7 +54,7 @@ export function loadMapList() {
 
     dispatch(requestMapList());
 
-    return fetch('api/maps', config)
+    return fetch('/api/maps', config)
     .then(response =>
         response.json().then(the_json => ({ the_json, response }))
             ).then(({ the_json, response }) =>  {

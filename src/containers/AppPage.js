@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/authActions';
+import {loadMapList} from '../actions/mapsListActions';
 import App from '../components/App';
 
 export const AppPage = (props) => {
@@ -9,6 +10,7 @@ export const AppPage = (props) => {
     <App
       authProps={props.authProps}
       loginUserAction={props.actions.loginUser}
+      loadMapList={props.actions.loadMapList}
       mapsFetching={props.mapsFetching}
       mapsErrorMessage={props.mapsErrorMessage}
       maps={props.maps}
@@ -33,7 +35,6 @@ function mapStateToProps(state) {
   const { auth } = state;
   const mapState = state.maps;
   const { isAuthenticated, loginErrorMessage, isFetching } = auth;
-  console.log(mapState);
   const { mapsFetching, mapsErrorMessage, maps, frames } = mapState;
 
   return {
@@ -51,8 +52,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
+  let all_actions = Object.assign(actions, {loadMapList});
+
   return {
-    actions: bindActionCreators(actions, dispatch)
+    actions: bindActionCreators(all_actions, dispatch)
   };
 }
 

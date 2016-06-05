@@ -27,12 +27,13 @@ const MapGridItem = (props) => {
   };
 
   const closeOptionsModal = () => {
-    props.closeMapOptions();
+    closeMapOptions();
   };
 
   const frameAction = () => {
     console.log('FRAME ACTION RAN BISH!');
     props.closeMapOptions();
+    props.frameAMap(mapId);
   }
 
   const optionItems = [
@@ -71,7 +72,7 @@ const MapGridItem = (props) => {
         </Row>
         </Grid>
       <ModalWindow
-        showModalWindow={props.mapOptionsOpened === props.id}
+        showModalWindow={props.mapOptionsOpened === mapId}
         close={closeOptionsModal}
         customClass="modal-gridItem-options"
       >

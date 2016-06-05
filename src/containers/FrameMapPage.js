@@ -2,17 +2,11 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/mapsListActions';
-import Maps from '../components/Maps';
+import FrameMap from '../components/FrameMap';
 
-export const MapsListPage = (props) => {
+export const FrameMapPage = (props) => {
   return (
-    <Maps
-      openMapOptions={props.actions.openMapOptions}
-      closeMapOptions={props.actions.closeMapOptions}
-      frameAMap={props.actions.frameAMap}
-      loadMapList={props.actions.loadMapList}
-      mapsFetching={props.mapsFetching}
-      mapsErrorMessage={props.mapsErrorMessage}
+    <FrameMap
       maps={props.maps}
       frames={props.frames}
       mapOptionsOpened={props.mapOptionsOpened}
@@ -21,10 +15,8 @@ export const MapsListPage = (props) => {
   );
 };
 
-MapsListPage.propTypes = {
+FrameMapPage.propTypes = {
   actions: PropTypes.object.isRequired,
-  mapsFetching: PropTypes.bool.isRequired,
-  mapsErrorMessage: PropTypes.string.isRequired,
   maps: PropTypes.array.isRequired,
   frames: PropTypes.array.isRequired,
   mapOptionsOpened: PropTypes.number.isRequired,
@@ -49,4 +41,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MapsListPage);
+)(FrameMapPage);
