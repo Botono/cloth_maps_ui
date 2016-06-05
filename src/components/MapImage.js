@@ -10,6 +10,10 @@ const MapImage = (props) => {
   const mapOptions = props.mapOptions;
   const frameOptions = props.frameOptions;
 
+  if (props.forceFrame) {
+    mapOptions.frame_id = frameOptions.id;
+  }
+
   let frameDimensions = {};
   let mapDimensions = {};
   let finalImage;
@@ -33,9 +37,13 @@ const MapImage = (props) => {
   };
 
   const getMapRelativePositionPercentage = () => {
-    let percent = Math.round((mapOptions.width/frameOptions.overall_width)*100);
+    let width_percent = Math.round((mapOptions.width/frameOptions.overall_width)*100);
+    let height_percent = Math.round((mapOptions.height/frameOptions.overall_height)*100);
 
-    return (100-percent)/2;
+    return {
+      x: ((100-width_percent)/2) + "%",
+      y: ((100-height_percent)/2) + "%"
+    }
   };
 
   const getMapRelativeSizes = () => {
@@ -62,6 +70,12 @@ const MapImage = (props) => {
       frameDimensions.width = maxLongestDimension;
       frameDimensions.height = maxLongestDimension;
     }
+
+    if (mapOptions.width > mapOptions.height) {
+      [frameDimensions.width, frameDimensions.height] = [frameDimensions.height, frameDimensions.width];
+      [frameOptions.overall_height, frameOptions.overall_width] = [frameOptions.overall_width, frameOptions.overall_height];
+    }
+
     frameDimensions.frameStrokeWidth = Math.round(((frameOptions.wood_width*2)/frameOptions.overall_width)*100) + "%";
 
     if (mapOptions.matte) {
@@ -72,10 +86,12 @@ const MapImage = (props) => {
     mapRelative = getMapRelativeSizes();
     frameDimensions.mapWidth = mapRelative.width + "%";
     frameDimensions.mapHeight = mapRelative.height + "%";
-    frameDimensions.mapXY = getMapRelativePositionPercentage(mapOptions.width, frameOptions.overall_width) + "%";
+    frameDimensions.mapXY = getMapRelativePositionPercentage();
 
     frameTag = <rect x="0" y="0" height="100%" width="100%" stroke="black" strokeWidth={frameDimensions.frameStrokeWidth} fill="none" />;
-    imageTag = <image x={frameDimensions.mapXY} y={frameDimensions.mapXY} height={frameDimensions.mapHeight} width={frameDimensions.mapWidth} xlinkHref={getMapImage()}></image>;
+    imageTag = <image x={frameDimensions.mapXY.x} y={frameDimensions.mapXY.y} height={frameDimensions.mapHeight} width={frameDimensions.mapWidth} xlinkHref={getMapImage()}></image>;
+
+
 
     finalImage = (<svg width={frameDimensions.width} height={frameDimensions.height} xmlns="http://www.w3.org/2000/svg" className="center-block">
       {imageTag}

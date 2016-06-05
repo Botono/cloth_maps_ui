@@ -31,7 +31,6 @@ const MapGridItem = (props) => {
   };
 
   const frameAction = () => {
-    console.log('FRAME ACTION RAN BISH!');
     props.closeMapOptions();
     props.frameAMap(mapId);
   }
@@ -54,7 +53,7 @@ const MapGridItem = (props) => {
         <Row>
           <Col xs={12}>
             <h3>
-              {props.mapOptions.name}
+              {props.forceFrame ? props.frameOptions.name : props.mapOptions.name}
               <ButtonGroup pullRight>
                 <Button onClick={openClickHandler} bsStyle="link" bsSize="large">
                   <Glyphicon glyph="option-vertical" />
@@ -66,7 +65,7 @@ const MapGridItem = (props) => {
         <Row>
           <Col>
             <div className="grid-item-spacer">
-              <MapImage mapOptions={props.mapOptions} frameOptions={props.frameOptions} />
+              <MapImage mapOptions={props.mapOptions} frameOptions={props.frameOptions} forceFrame={props.forceFrame} />
             </div>
           </Col>
         </Row>

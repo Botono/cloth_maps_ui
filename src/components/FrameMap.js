@@ -17,8 +17,9 @@ class FrameMap extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-
     this.getMapFrame = this.getMapFrame.bind(this);
+    this.getMap = this.getMap.bind(this);
+    this.getFramesThatFit = this.getFramesThatFit.bind(this);
 
   }
 
@@ -32,16 +33,53 @@ class FrameMap extends React.Component {
     return {}
   }
 
+  getMap(map_id) {
+    for (let i=0;this.props.maps[i];i++) {
+      if (this.props.maps[i].id === map_id*1) {
+        return this.props.maps[i];
+      }
+    }
+    return {}
+  }
+
+  getFramesThatFit(the_map) {
+    let the_frames = [];
+    let frame_area = 0;
+    let map_area = the_map.height * the_map.width;
+
+    for (let i=0;this.props.frames[i];i++) {
+
+      let this_frame = this.props.frames[i];
+      frame_area = this_frame.window_height * this_frame.window_width;
+
+      if (map_area < frame_area) {
+        the_frames.push(this_frame);
+      }
+    }
+
+    return the_frames;
+  }
+
   render() {
+    let the_map = this.getMap(this.props.params.mapId);
+
+    // Get frames that fit the map, sorted by how well the map fits
+    let the_frames = this.getFramesThatFit(the_map).sort((a, b) => {
+      let map_area = the_map.height * the_map.width;
+      let a_diff = (a.window_height * a.window_width)-map_area;
+      let b_diff = (b.window_height * b.window_width)-map_area;
+      return a_diff-b_diff;
+    });
+
     let mapGridItems =
-      this.props.maps.map((map, i) => {
+      the_frames.map((frame, i) => {
         let return_array = [];
-        let mapFrame = this.getMapFrame(map.frame_id);
 
         return_array.push(
           <MapGridItem
-            mapOptions={map}
-            frameOptions={mapFrame}
+            mapOptions={the_map}
+            frameOptions={frame}
+            forceFrame={true}
             openMapOptions={this.props.openMapOptions}
             closeMapOptions={this.props.closeMapOptions}
             mapOptionsOpened={this.props.mapOptionsOpened}
@@ -57,9 +95,11 @@ class FrameMap extends React.Component {
           // Insert Sm Clearfix after every other MapGridItem
           return_array.push(<Clearfix visibleSmBlock /> );
         }
+
+
         return (return_array);
     });
-
+    console.log(mapGridItems);
     return (
       <div>
         <Grid fluid={true}>

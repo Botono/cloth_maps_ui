@@ -7,6 +7,7 @@ import FrameMap from '../components/FrameMap';
 export const FrameMapPage = (props) => {
   return (
     <FrameMap
+      params={props.params}
       maps={props.maps}
       frames={props.frames}
       mapOptionsOpened={props.mapOptionsOpened}
@@ -20,7 +21,8 @@ FrameMapPage.propTypes = {
   maps: PropTypes.array.isRequired,
   frames: PropTypes.array.isRequired,
   mapOptionsOpened: PropTypes.number.isRequired,
-  authProps: PropTypes.object.isRequired
+  authProps: PropTypes.object.isRequired,
+  params: PropTypes.object
 };
 
 function mapStateToProps(state) {
