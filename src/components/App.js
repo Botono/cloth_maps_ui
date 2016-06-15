@@ -1,6 +1,9 @@
 import React from "react";
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import Navigation from "./Navigation";
-import Row from 'react-bootstrap/lib/Row';
+
 
 class App extends React.Component {
 
@@ -23,12 +26,12 @@ class App extends React.Component {
     );
 
     return (
-      <div>
-        <Row>
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <div>
           <Navigation authProps={this.props.authProps} loginUserAction={this.props.loginUserAction}/>
           {childrenWithProps}
-        </Row>
-      </div>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

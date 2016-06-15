@@ -1,14 +1,5 @@
 import React from "react";
 
-import Button from 'react-bootstrap/lib/Button';
-import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Grid from 'react-bootstrap/lib/Grid';
-import Row from 'react-bootstrap/lib/Row';
-import Col from 'react-bootstrap/lib/Col';
-import Clearfix from 'react-bootstrap/lib/Clearfix';
-
-import AlertError from './AlertError';
 import MapGridItem from './MapGridItem';
 
 
@@ -42,7 +33,7 @@ class Maps extends React.Component {
 
   render() {
     let mapGridItems =
-      this.props.maps.map((map, i) => {
+      this.props.maps.map((map) => {
         let return_array = [];
         let mapFrame = this.getMapFrame(map.frame_id);
 
@@ -56,25 +47,12 @@ class Maps extends React.Component {
             frameAMap={this.props.frameAMap}
           />);
 
-        if ((i+1)%3===0) {
-          // Insert Medium Clearfix after every third MapGridItem
-          return_array.push(<Clearfix visibleMdBlock visibleLgBlock /> );
-        } else if ((i+1)%2===0) {
-          // Insert Sm Clearfix after every other MapGridItem
-          return_array.push(<Clearfix visibleSmBlock /> );
-        }
-
         return (return_array);
     });
 
     return (
-      <div>
-        <Grid fluid={true}>
-          <Row className="show-grid">
-            <AlertError message={this.props.mapsErrorMessage} />
-            {mapGridItems}
-          </Row>
-        </Grid>
+      <div style={{padding: '65px 20px 0 20px' }}>
+        {mapGridItems}
       </div>
     );
 
