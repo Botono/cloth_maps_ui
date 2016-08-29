@@ -13,7 +13,7 @@ class Navigation extends React.Component {
     return (
       <div>
         <AppBar
-        title="Cloth Maps"
+        title="Cloth Map Collection"
         iconClassNameRight="muidocs-icon-navigation-expand-more"
         style={{position: 'fixed'}}
         />

@@ -1,6 +1,6 @@
-import React from "react";
+import React, {PropTypes} from "react";
 
-import MapGridItem from './MapGridItem';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 
 class Maps extends React.Component {
@@ -12,6 +12,7 @@ class Maps extends React.Component {
     this.close = this.close.bind(this);
     this.getMapFrame = this.getMapFrame.bind(this);
   }
+
 
   open() {
     this.props.openAddMap();
@@ -28,35 +29,54 @@ class Maps extends React.Component {
         return this.props.frames[i];
       }
     }
-    return {}
+    return {};
   }
 
   render() {
-    let mapGridItems =
+    let mapListRows =
       this.props.maps.map((map) => {
         let return_array = [];
-        let mapFrame = this.getMapFrame(map.frame_id);
+        let mapFramed = map.frame_id ? "Yes": "No";
 
         return_array.push(
-          <MapGridItem
-            mapOptions={map}
-            frameOptions={mapFrame}
-            openMapOptions={this.props.openMapOptions}
-            closeMapOptions={this.props.closeMapOptions}
-            mapOptionsOpened={this.props.mapOptionsOpened}
-            frameAMap={this.props.frameAMap}
-          />);
+          <TableRow>
+            <TableRowColumn>{map.name}</TableRowColumn>
+            <TableRowColumn>{map.width}</TableRowColumn>
+            <TableRowColumn>{map.height}</TableRowColumn>
+            <TableRowColumn>{mapFramed}</TableRowColumn>
+          </TableRow>
+          );
 
         return (return_array);
     });
 
     return (
       <div style={{padding: '65px 20px 0 20px' }}>
-        {mapGridItems}
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderColumn>Name</TableHeaderColumn>
+              <TableHeaderColumn>Width</TableHeaderColumn>
+              <TableHeaderColumn>Height</TableHeaderColumn>
+              <TableHeaderColumn>Framed</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody stripedRows={true}>
+            {mapListRows}
+          </TableBody>
+        </Table>
       </div>
     );
 
   }
 }
+
+Maps.propTypes = {
+  openMapOptions: PropTypes.func.isRequired,
+  closeMapOptions: PropTypes.func.isRequired,
+  frames: PropTypes.array.isRequired,
+  maps: PropTypes.array.isRequired,
+  mapOptionsOpened: PropTypes.number
+};
 
 export default Maps;
