@@ -27,8 +27,6 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    console.log(this.props.authProps.loginErrorMessage);
-
     let buttonLabel = this.props.authProps.isFetching ? 'Logging in...' : 'Login';
 
     const actions = [

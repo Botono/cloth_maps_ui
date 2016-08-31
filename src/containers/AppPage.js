@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/authActions';
 import {loadMapList} from '../actions/mapsListActions';
+import {toggleSideNav} from '../actions/navActions';
 import App from '../components/App';
 
 export const AppPage = (props) => {
@@ -15,6 +16,8 @@ export const AppPage = (props) => {
       mapsErrorMessage={props.mapsErrorMessage}
       maps={props.maps}
       frames={props.frames}
+      toggleSideNav={props.actions.toggleSideNav}
+      sideNavOpened={props.sideNavOpened}
       children={props.children}
     />
   );
@@ -27,15 +30,17 @@ AppPage.propTypes = {
   mapsErrorMessage: PropTypes.string.isRequired,
   maps: PropTypes.array.isRequired,
   frames: PropTypes.array.isRequired,
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
+  sideNavOpened: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
 
-  const { auth } = state;
+  const { auth, nav } = state;
   const mapState = state.maps;
   const { isAuthenticated, loginErrorMessage, isFetching } = auth;
   const { mapsFetching, mapsErrorMessage, maps, frames } = mapState;
+  const { sideNavOpened } = nav;
 
   return {
     authProps: {
@@ -46,13 +51,14 @@ function mapStateToProps(state) {
     mapsFetching,
     mapsErrorMessage,
     maps,
-    frames
+    frames,
+    sideNavOpened
   };
 
 }
 
 function mapDispatchToProps(dispatch) {
-  let all_actions = Object.assign(actions, {loadMapList});
+  let all_actions = Object.assign(actions, {loadMapList, toggleSideNav});
 
   return {
     actions: bindActionCreators(all_actions, dispatch)

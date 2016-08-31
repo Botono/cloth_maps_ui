@@ -28,7 +28,12 @@ class App extends React.Component {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div>
-          <Navigation authProps={this.props.authProps} loginUserAction={this.props.loginUserAction}/>
+          <Navigation
+            authProps={this.props.authProps}
+            loginUserAction={this.props.loginUserAction}
+            toggleSideNav={this.props.toggleSideNav}
+            sideNavOpened={this.props.sideNavOpened}
+          />
           {childrenWithProps}
         </div>
       </MuiThemeProvider>

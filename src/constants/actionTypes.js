@@ -19,3 +19,6 @@ export const MAP_OPTIONS_OPEN = 'MAP_OPTIONS_OPEN';
 export const MAP_OPTIONS_CLOSED = 'MAP_OPTIONS_CLOSED';
 
 export const FRAME_MAP = 'FRAME_MAP';
+
+export const OPEN_SIDE_NAV = 'OPEN_SIDE_NAV';
+export const CLOSE_SIDE_NAV = 'CLOSE_SIDE_NAV';
